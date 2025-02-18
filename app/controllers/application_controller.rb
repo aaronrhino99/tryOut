@@ -4,9 +4,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def configure_permitter_parameters
+  # Corrected method name and parameter sanitizer
+  def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
-    devise_paramenter_sanitizer.permit(account_update, keys: [:username])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
 
   def after_sign_in_path_for(resource)
@@ -17,11 +18,11 @@ class ApplicationController < ActionController::Base
 
   def handle_error(error)
     logger.error "Error: #{error.message}"
-    looger.error error.backtrace.join("\n")
+    logger.error error.backtrace.join("\n")
 
     respond_to do |format|
-      format.html { redirect_to root_path, alert: 'An error has occured.' }
-      format.json { render json: { error: error.message}, status: :internal_server_error}
+      format.html { redirect_to root_path, alert: 'An error has occurred.' }
+      format.json { render json: { error: error.message }, status: :internal_server_error }
     end
   end
 end

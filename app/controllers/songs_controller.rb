@@ -3,9 +3,13 @@ class SongsController < ApplicationController
   before_action :set_song, only: [:show, :update, :destroy]
 
   def index
-    @songs = current_user.songs.all
-    render json: @songs
+    @songs = current_user.songs.order(created_at: :desc) # Ensure you're loading songs correctly
+    respond_to do |format|
+      format.html # Renders the index.html.erb
+      format.json { render json: @songs } # Remove this if you don't want JSON output
+    end
   end
+  
 
   def show
     render json: @song
@@ -51,6 +55,6 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    params.require(:song).permit(:title, :artist, :album, :duration, :youtube_id)
-  end
+    params.require(:song).permit(:title, :artist, :album, :duration, :youtube_id, :youtube_url, :channel_title, :thumbnail, :status)
+  end  
 end

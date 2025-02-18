@@ -71,6 +71,7 @@ gem 'devise'
 gem 'sidekiq'
 gem 'sidekiq-unique-jobs'
 gem 'sidekiq-cron'
+gem 'active_storage_validations'
 # Youtube integration
 gem 'google-api-client'
 gem 'youtube-dl.rb'  # Correct source for youtube_dl.rb

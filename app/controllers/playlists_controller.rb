@@ -2,6 +2,10 @@ class PlaylistsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_playlist, only: [:show, :update, :destroy, :add_song, :remove_song]
 
+   def new
+    @playlist = Playlist.new
+  end
+  
   def index
     @playlists = current_user.playlists.all
     render json: @playlists

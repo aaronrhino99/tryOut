@@ -123,7 +123,10 @@
                     <p class="mb-1 text-muted">${video.channel_title}</p>
                     <form action="/songs" method="post" class="mt-2">
                       <input type="hidden" name="authenticity_token" value="${document.querySelector('meta[name="csrf-token"]').content}">
-                      <input type="hidden" name="youtube_url" value="https://www.youtube.com/watch?v=${video.id}">
+                      <input type="hidden" name="song[youtube_url]" value="https://www.youtube.com/watch?v=${video.id}">
+                      <input type="hidden" name="song[title]" value="${video.title}">
+                      <input type="hidden" name="song[channel_title]" value="${video.channel_title}">
+                      <input type="hidden" name="song[thumbnail]" value="${video.thumbnail}">
                       <button type="submit" class="btn btn-sm btn-success">Download</button>
                     </form>
                   </div>

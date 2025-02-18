@@ -1,11 +1,8 @@
-# app/models/user.rb
 class User < ApplicationRecord
+  has_many :downloads
+  has_many :songs, through: :downloads  # Establish many-to-many through downloads
+  has_many :playlists
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
-  has_many :songs, dependent: :destroy
-  has_many :playlists, dependent: :destroy
-
-  # Add if you need admin functionality
-  # attribute :admin, :boolean, default: false
 end

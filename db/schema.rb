@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_02_17_084721) do
+ActiveRecord::Schema[7.1].define(version: 2025_02_18_195047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,13 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_17_084721) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "downloads", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "song_id"
+    t.integer "user_id"
+  end
+
   create_table "playlist_songs", force: :cascade do |t|
     t.bigint "playlist_id", null: false
     t.bigint "song_id", null: false
@@ -69,6 +76,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_02_17_084721) do
     t.string "youtube_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status"
+    t.string "youtube_url"
+    t.string "channel_title"
+    t.string "thumbnail"
     t.index ["user_id"], name: "index_songs_on_user_id"
   end
 
